@@ -1,5 +1,5 @@
 #!/bin/bash
-
+#2.1
 echo "Enter the directory path"
 read directory_path
 
