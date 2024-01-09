@@ -1,0 +1,244 @@
+﻿The first stage of debugging is checking the log details.
+
+
+A version control system is a tool that helps you manage “versions” of your code or changes to your code while working with a team over remote distances.
+In a version control system, the source code is called a repository or repo for short.
+
+
+a good VCS should allow a developer to work with their preferred workflow. Other qualities of a good VCS is platform independence. It should not dictate what OS a team should collectively use. The software should also facilitate a smooth, continuous flow of changes.
+
+
+A complete history of changes in every file over years by every single individual who has interacted with the repository. These changes include adding files, deleting files and moving them as well as the edits made within the files. The VCS also tracks the author of the changes, the date the changes were made and also an optional note called the commit message that details the purpose of the changes made.
+
+
+By creating branches, team members can keep multiple streams of work independent from each other while facilitating a way to merge the branches back together and synchronize the codebase.
+
+
+we know that the version control system tracks changes to a file or set of files over time. There are three types of version control system:
+1. Local Version Control Systems:VCS but without a remote repo. You manage and version all the files only within your local system. 
+2. Centralized Version Control Systems: Here, there’s a central repo shared with all the developers, and everyone gets their own working copy. Whenever you commit, the changes get reflected directly in the repo.
+3. Distributed Version Control Systems: In distributed systems, there is a local copy of the repo for every developer on their computers. They can make whatever changes they want and commit without affecting the remote repo. They first commit in their local repo and then push the changes to the remote repo.
+
+
+Remote repo is a git repo on a server hosted by any such providers like GitHub, Bitbucket, etc.
+
+
+In distributed, you first commit locally, and it will not allow others to see until you push it to the remote. Likewise, when others commit a change in a centralized system, you can directly see them, but you need to pull changes in the local repo in distributed systems after they push it.
+
+
+in a Distributed VCS, even if someone’s local repo is corrupted or the remote doesn’t work or is deleted, or anything happens, there is a copy available with other developers. So you can take it from them, push to remote, and everything is back on track, just like before. There is no problem of single-point failure in Distributed VCS.
+
+
+DVCSs allow full access to every file, branch, and iteration of a project, and allows every user access to a full and self-contained history of all changes. Unlike once popular centralised version control systems, DVCSs like Git don’t need a constant connection to a central repository. Developers can work anywhere and collaborate asynchronously from any time zone.
+
+
+
+
+Git commands:
+Git config –global use.name: used in Git to set or configure the global user name associated with your Git commits. This command is part of configuring your Git environment and is typically one of the first things you do when you start using Git on a new machine.
+
+
+
+
+ This is the command used to configure various settings in Git.
+
+
+--global: This flag specifies that the configuration should be applied globally, affecting all repositories on your machine. Without this flag, the configuration would be specific to the current repository.
+
+
+user.name: This is the configuration key for setting the user's name.
+The purpose of setting the global user name is to associate a recognizable name with your Git commits. When you make commits in a Git repository, each commit records the name and email address of the person who made the commit. This information helps identify who made a particular change to the code.
+
+
+git init is a command in Git that is used to initialize a new, empty Git repository. When you run this command in a directory, it sets up the necessary files and data structures for Git version control.
+* When you're starting a new software project, you may want to version control your code using Git. Running git init in the project's root directory is the first step in setting up version control.
+* The project directory will now have a hidden subfolder called .git that contains the internal data structure required for version control
+* .git folder saves the entire data.
+* When you fork or clone a repository from a remote source (like GitHub), you don't need to run git init separately, as Git initializes the repository during the cloning process. However, if you manually download a repository or copy it from another location, you might need to run git init to initialize Git in that directory.
+
+
+Ls -lart is used to display hidden files.
+A repository a.k.a. repo is nothing but a collection of source code.
+There are four fundamental elements in the Git Workflow: Working Directory, Staging Area, Local Repository and Remote Repository.
+
+
+In Git, the concepts of "tracked" and "untracked" files refer to whether or not Git is actively managing and keeping track of changes in those files.When you clone a repository or add a file to a Git repository, the file becomes tracked by default.
+Git considers these changes as untracked until you use git add to stage them.
+Staged changes are then ready to be committed using git commit.
+Committed changes become part of the Git history.
+
+
+it can be staged. Which means the files with the updated changes are marked to be committed to the local repository but not yet committed.
+It can be modified. Which means the files with the updated changes are not yet stored in the local repository.
+It can be committed. Which means that the changes you made to your file are safely stored in the local repository.
+  
+
+
+
+
+
+
+
+ Git commands;
+* git add is a command used to add a file that is in the working directory to the staging area.
+Git add - A : to commit all the files
+* git commit is a command used to add all files that are staged to the local repository.
+* git push is a command used to add all committed files in the local repository to the remote repository. So in the remote repository, all files and changes will be visible to anyone with access to the remote repository.
+* To not open vi editor for commiting files, we can use: git commit -m "Add myfile.txt", otherwise we can use git commit command.
+
+
+# Create a new file (untracked)
+echo "Hello, Git!" > myfile.txt
+# Add the file to the staging area (tracked)
+git add myfile.txt
+# Commit the changes (tracked)
+git commit -m "Add myfile.txt"
+
+
+A modified file is a file that has been changed in your working directory since the last commit. This means you have made edits or modifications to the content of the file.
+Git considers a file modified when its content has been altered or when there are new, unstaged changes.
+
+
+An unmodified file is a file that exists in your working directory, but its content has not been changed since the last commit. The file is in the same state as it was when you last committed it.
+* Git considers a file unmodified when it matches the state of the last commit.
+* When you run git status, unmodified files are listed as "nothing to commit, working directory clean."
+
+
+git checkout is used to switch between different branches or versions of your project. It helps you move to a specific branch or commit, making your working directory match the state of that branch or commit. It's like changing the "view" of your project to a different point in time or a different set of changes.
+* When you accidentally modified a committed file, you can go back and match it to the last commit i.e. go back to the previous state.
+* Git checkout -f: command forcefully discards all changes in your working directory and switches to the specified branch or commit. This can be useful when you want to discard local changes and make your working directory exactly match the chosen branch or commit without worrying about preserving any modifications. However, use this command with caution, as it permanently discards local changes.
+* Git log: This command displays the commit history of the current branch. It shows a list of commits, starting with the latest commit at the top.It provides information such as the commit hash, author, date, and commit message for each commit.
+* git log -p -1: This command also displays the commit history, but with an additional option: -p: This option shows the patch (the actual changes made) in each commit.
+            -1: This limits the output to just the last commit.
+* Git diff: compares working area to staging directory
+* Git rm: will delete the file  (even from staging area): it rm: This command is used to remove files from both the working directory and the staging area (index). When you use git rm, Git stages the removal of the file, and the file is deleted from both the working directory and the index.
+* Git rm –cached: This command is used to unstage files that have been previously staged for commit. It does not remove the file from the working directory; instead, it only removes the file from the staging area.(to untrack the file)
+* The git status -s command is used to show a short and concise summary of the changes in your Git repository. The output of this command provides a quick overview of the status of your files, indicating which files have been modified, which ones are staged for the next commit, and which ones are untracked.
+* Two columns on the left: These columns represent the status of the files. The first column indicates the status of the staging area (index), and the second column indicates the status of the working directory.
+* The purpose of gitignore files is to ensure that certain files not tracked by Git remain untracked.
+* Git branch: This command is your general-purpose branch administration tool. It lets you create isolated development environments within a single repository.
+* List all of the branches in your repository. This is synonymous with git branch --list.
+* git branch <branch> : Create a new branch called ＜branch＞. This does not check out the new branch.
+* git branch -d <branch>: Delete the specified branch. This is a “safe” operation in that Git prevents you from deleting the branch if it has unmerged changes.
+* git branch -m <branch>: Rename the current branch to ＜branch＞.
+* git branch -a: List all remote branches.
+*  Git checkout: In addition to checking out old commits and old file revisions, git checkout is also the means to navigate existing branches.
+
+
+Branching: t's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn’t change the repository in any other way. 
+* The git branch command also works on remote branches. In order to operate on remote branches, a remote repo must first be configured and added to the local repo config.
+* git remote add new-remote-repo https://bitbucket.com/user/repo.git
+# Add remote repo to local repo config
+* $ git push <new-remote-repo> crazy-experiment~
+* # pushes the crazy-experiment branch to new-remote-repo: This command will push a copy of the local branch crazy-experiment to the remote repo ＜remote＞.
+* Once you’ve finished working on a branch and have merged it into the main code base, you’re free to delete the branch without losing any history:git branch -d crazy-experiment
+* However, if the branch hasn’t been merged, the above command will output an error message:error: The branch 'crazy-experiment' is not fully merged. If you are sure you want to delete it, run 'git branch -D crazy-experiment
+* The ‘git branch -D crazy -experiment’ commands will delete a local copy of a branch. The branch may still exist in remote repos. To delete a remote branch execute the following: git push origin --delete crazy-experiment
+
+
+
+
+t's important to understand that branches are just pointers to commits. When you create a branch, all Git needs to do is create a new pointer, it doesn’t change the repository in any other way. If you start with a repository that looks like this:
+Working Directory:The working directory is the directory on your local machine where you have a copy of your Git repository.
+* It contains the actual files of your project, and you can modify these files as needed.
+* Any changes made to the files in the working directory are considered local modifications.
+
+
+Staging Area (Index):The staging area is an intermediate area between your working directory and the Git repository.
+* When you make changes to files in your working directory, Git doesn't automatically track those changes. Instead, you need to explicitly tell Git which changes you want to include in the next commit.
+* The staging area acts as a kind of "pre-commit" area. You can selectively choose which changes you want to commit by staging those changes.
+
+
+
+
+
+
+Unstaging:Unstaging refers to removing changes from the staging area (index) after they have been added using the git add command but before committing them.
+* If you have staged changes using git add and want to revert or unstage those changes, you can use the git reset command.
+        
+         Untracking refers to stopping Git from tracking changes in a file that was previously r      tacked. This is often done when you want to exclude a file from version control.
+* If a file is already tracked by Git, but you want to stop tracking it without deleting it, you can use the git rm --cached command.
+
+
+
+
+* Git reflog: used to display the reference logs, which are a history of references (e.g., branches and HEAD) in your Git repository. The reflog is a safety net that allows you to recover information about changes in your repository, even if you've performed actions like resetting or rebasing that might otherwise seem to discard history.
+  
+
+
+
+
+
+Why tokens are required instead of password?
+* Personal access tokens are more secure than passwords because they are specific to a certain set of permissions and actions. Passwords, on the other hand, provide broader access to your account, which could pose a security risk if compromised.
+* When you create a personal access token, you can specify the exact permissions it needs. This allows you to follow the principle of least privilege, granting only the necessary permissions for the task at hand. Passwords typically provide broader access, which might not be ideal for security.
+
+
+GitHub has removed support for password authentication over HTTPS, and it's recommending the use of a personal access token or other authentication methods.
+1. Create a Personal Access Token:Generate a personal access token from your GitHub account. Follow these steps:
+* Go to your GitHub account settings.
+* Navigate to "Developer settings" > "Personal access tokens."
+* Click on "Generate token" and provide the necessary scopes (at least repo for private repositories).
+* Copy the generated token.
+
+
+2. Use Personal Access Token for Authentication: When you perform Git operations that require authentication, such as cloning or pushing, replace your GitHub password with the personal access token.
+
+
+3. Instead of entering your GitHub password, use the personal access token as the password:Username for 'https://github.com': YourGitHubUsername
+Password for 'https://YourGitHubUsername@github.com': YourPersonalAccessToken
+
+
+4. Replace YourGitHubUsername with your GitHub username and YourPersonalAccessToken with the personal access token you generated.
+
+
+5. Configure Git to Use the Personal Access Token: To avoid entering your token with every Git operation, you can configure Git to store your credentials:
+          git config --global credential.helper cache
+
+
+        This command tells Git to cache your credentials for a certain amount of time.
+
+
+After making these changes, you should be able to clone or push to your GitHub repository using the personal access token for authentication. Remember to keep your personal access token secure and not share it with others. If you're using Git from a CI/CD environment, you might need to set up the personal access token as a secret in your CI/CD configuration.
+
+
+To push changes to a private repository on GitHub, you typically follow these steps:
+1. Clone Repository: If you haven't already cloned the repository to your local machine, use the `git clone` command to do so. Replace `<repository_url>` with the actual URL of your private repository:git clone <repository_url>. For example:
+git clone https://github.com/YashasviDevtron/YourPrivateRepository.git
+2.  Make Changes: Make the desired changes to the files in your local repository.
+3. Stage and Commit Changes:Stage the changes using `git add` and commit them using `git commit`. For example: git add .
+git commit -m "Your commit message"
+4.  Push Changes to the Remote Repository: Use the `git push` command to push the committed changes to the remote repository. If it's your first push or if you're pushing to a branch that doesn't exist on the remote yet, you might need to set the upstream branch. Replace `<branch_name>` with the name of the branch you want to push:git push -u origin <branch_name>.For example, if you're pushing changes to the `main` branch: git push -u origin main
+5.  If you've already set the upstream branch, you can use the simpler command:  git push
+6.  Enter GitHub Credentials or Use Personal Access Token: When you push to a private repository, GitHub will prompt you for your GitHub credentials. Enter your GitHub username and either your GitHub password or, if you have two-factor authentication enabled, use a personal access token as the password.
+7.  If you're using a personal access token, the prompt will look like this:Username for 'https://github.com': YourGitHubUsername
+   Password for 'https://YourGitHubUsername@github.com': YourPersonalAccessToken
+   Replace `YourGitHubUsername` with your GitHub username and `YourPersonalAccessToken`  with the personal access token.
+
+
+Shallow cloning
+Github organization
+
+
+Github release
+
+
+Using GitHub Releases is especially valuable for open-source projects or any project with a user community. It enhances transparency, facilitates collaboration, and provides a clear way for users to access specific versions of your software.
+
+
+Here are the general steps to create a GitHub Release:
+1. Create a Tag:Before creating a release, you usually create a Git tag to mark a specific commit as a release point. This can be a version number, a commit hash, or any identifier that makes sense for your project. For example:
+                   git tag -a v1.0.0 -m "Release version 1.0.0"
+                    git push origin v1.0.0
+2. Draft a Release:Go to your GitHub repository, click on the "Releases" tab, and then click the "Draft a new release" button.
+* Tag Version: Select the tag you just created (e.g., v1.0.0).
+* Release Title: Give your release a title (e.g., "Version 1.0.0").
+* Description: Add release notes, information about new features, bug fixes, or any other relevant details.
+* Attach Files: You can attach binaries or source code archives to the release.
+* Publish Release: Click the "Publish release" button when you're ready.
+3. Once you've published the release, users can access it on the GitHub Releases page. They can download the attached files, view release notes, and see the changes introduced in that version.
+
+
+
+
+Forking:
