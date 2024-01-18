@@ -1,6 +1,0 @@
- Name  |   Age    | Country |
-+---------+----------+---------+
-|   John  |   28     |  USA    |
-|   Maria |   35     |  Spain  |
-|   Ahmed |   22     |  Egypt  |
-|   Emily |   40    
