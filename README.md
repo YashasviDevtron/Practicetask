@@ -1,2 +1,2 @@
 Practice Repo
-# Practicetask
+This repository contains all the tasks that was assigned.
