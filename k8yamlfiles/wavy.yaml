@@ -1,0 +1,42 @@
+apiVersion: apps/v1
+kind: Deployment
+metadata:
+  name: nodeappserver-deployment
+  labels:
+    app: nodeappserver
+spec:
+  replicas: 1
+  selector:
+    matchLabels:
+      app: nodeappserver
+  template:
+    metadata:
+      labels:
+        app: nodeappserver
+    spec:
+      containers:
+      - name: nodeappserver
+        image: yashasvi7/nodeapp
+        ports:
+        - containerPort: 3000
+        env:
+        - name: PORT
+          value: "3000"
+        - name: SECRET
+          value: "VASGODAGAMA"
+        - name: MONGODB_URL
+          value: mongodb://mongo-service:27017/db
+---
+apiVersion: v1
+kind: Service
+metadata:
+  name: nodeappserver-service
+spec:
+  type: NodePort
+  selector:
+    app: nodeappserver
+  ports:
+    - protocol: TCP
+      port: 3000
+      targetPort: 3000
+      nodePort: 30200
