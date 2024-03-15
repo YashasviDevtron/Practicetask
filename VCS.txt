@@ -1,4 +1,4 @@
-﻿The first stage of debugging is checking the log details.
+﻿The first stage of debugging is checking the log details..
 
 
 A version control system is a tool that helps you manage “versions” of your code or changes to your code while working with a team over remote distances.
